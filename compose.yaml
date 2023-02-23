@@ -19,5 +19,18 @@ services:
     depends_on:
       - mongodb
     container_name: backend
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    container_name: frontend
 volumes:
   mongodbdata:
